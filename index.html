@@ -143,7 +143,6 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
 const CATS={in:[['Grab'],['Bolt'],['Lala move'],['Line man'],['Bonus/Tip'],['อื่นๆ']],
  ex:[['น้ำมัน','fuel'],['เสื้อ/อุปกรณ์','shirt'],['ค่าอาหาร','food'],['ซ่อมบำรุง','tool'],['รายจ่ายอื่นๆ','dot']]};
 const COL=['#e5484d','#f59f00','#1f6feb','#8e5cf7','#8b9a92'];
-const seed=[[ '2026-10-13',210,120],['2026-10-17',641,120],['2026-10-23',739,120],['2026-10-24',962,230]];
 let cat='',rows=[],type='in',url=localStorage.getItem('gs_url')||'',charts={};
 const $=id=>document.getElementById(id), uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const fmt=n=>'฿'+Math.round(n).toLocaleString('th-TH');
@@ -154,15 +153,12 @@ function badge(t,c){if(t==='in'){const b=BR[c]||BR['อื่นๆ'];return `<d
 function chips(){$('chips').className='chips '+type;$('chips').innerHTML=CATS[type].map(c=>`<button type="button" class="chip${c[0]===cat?' on':''}" data-c="${c[0]}">${badge(type,c[0])}<span>${c[0]}</span></button>`).join('')}
 $('chips').onclick=e=>{const b=e.target.closest('.chip');if(b){cat=b.dataset.c;chips()}};
 const icon=(t,c)=>{const f=CATS[t].find(x=>x[0]===c);return f?f[1]:'dot'};
-const store=()=>localStorage.setItem('rows',JSON.stringify(rows));
-function mkSeed(){const r=[];seed.forEach(([d,i,e])=>{r.push({id:uid(),date:d,type:'in',cat:'Grab',amount:i,note:''},{id:uid(),date:d,type:'ex',cat:'น้ำมัน',amount:e,note:''})});
- r.find(x=>x.date==='2026-10-24'&&x.type==='ex').amount=230;
- r.push({id:uid(),date:'2026-10-24',type:'ex',cat:'เสื้อ/อุปกรณ์',amount:590,note:'เสื้อ Grab'});return r}
+const store=()=>localStorage.setItem('rows_v2',JSON.stringify(rows));
 async function post(o){if(!url)return;try{await fetch(url,{method:'POST',body:JSON.stringify(o)});mark(true)}catch(e){mark(false)}}
 function mark(ok){$('syncTxt').textContent=url?(ok?'เชื่อมต่อ Sheet แล้ว':'เชื่อมต่อไม่ได้'):'ตั้งค่า Sheet'}
 async function load(){
   if(url){try{const r=await fetch(url);rows=(await r.json()).rows;rows.forEach(x=>{if(x.cat==='ค่าโดยสาร Grab')x.cat='Grab'});mark(true);render();return}catch(e){mark(false)}}
-  const s=localStorage.getItem('rows');rows=s?JSON.parse(s):mkSeed();rows.forEach(x=>{if(x.cat==='ค่าโดยสาร Grab')x.cat='Grab'});if(!s)store();mark(false);if(!url)$('syncTxt').textContent='ตั้งค่า Sheet';render()}
+  localStorage.removeItem('rows');const s=localStorage.getItem('rows_v2');rows=s?JSON.parse(s):[];mark(false);if(!url)$('syncTxt').textContent='ตั้งค่า Sheet';render()}
 function setType(t){type=t;$('tIn').className=(t==='in'?'on ':'')+'in';$('tEx').className=(t==='ex'?'on ':'')+'ex';
   cat=CATS[t][0][0];chips();
   const b=$('saveBtn');b.style.background=t==='in'?'var(--g)':'var(--r)';b.lastChild.textContent=t==='in'?'บันทึกรายรับ':'บันทึกรายจ่าย'}
