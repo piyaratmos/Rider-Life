@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ชีวิตไรเดอร์</title>
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d26">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ชีวิตไรเดอร์">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -23,6 +30,8 @@ button{font:inherit;cursor:pointer;border:0}
 .ib{background:#ffffff1f;color:#fff;padding:9px 12px;border-radius:12px;display:flex;gap:6px;align-items:center;font-size:13px}
 .ib:hover{background:#ffffff33}
 .stat{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-48px}
+.st2{margin-top:12px}.s.km .ico{background:var(--bs);color:var(--b)}.s.km b{color:var(--b)}
+.seg{grid-template-columns:1fr 1fr 1fr!important}.seg button{font-size:13px;padding:9px 4px!important}.seg button.on.km{background:var(--b);color:#fff}.row .a.km{color:var(--b)}
 .s{background:var(--card);border-radius:18px;padding:16px;border:1px solid var(--line);display:flex;gap:12px;align-items:center}
 .ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:20px;flex:none}
 .s small{color:var(--mute);font-size:12px;display:block}.s b{font-size:21px;font-weight:600}
@@ -98,17 +107,23 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
   <section class="stat">
     <div class="s inc"><div class="ico"><svg class="i"><use href="#up"/></svg></div><div><small>รายรับรวม</small><b id="sIn">0</b></div></div>
     <div class="s exp"><div class="ico"><svg class="i"><use href="#down"/></svg></div><div><small>รายจ่ายรวม</small><b id="sEx">0</b></div></div>
-    <div class="s net"><div class="ico"><svg class="i"><use href="#wallet"/></svg></div><div><small>กำไรสุทธิ</small><b id="sNet">0</b></div></div>
-    <div class="s avg"><div class="ico"><svg class="i"><use href="#cal"/></svg></div><div><small>กำไรเฉลี่ย/วัน</small><b id="sAvg">0</b></div></div>
+    <div class="s net"><div class="ico"><svg class="i"><use href="#wallet"/></svg></div><div><small>รายรับสุทธิ</small><b id="sNet">0</b></div></div>
+    <div class="s km"><div class="ico"><svg class="i"><use href="#bike"/></svg></div><div><small>ระยะทางรวม</small><b id="sKm">-</b></div></div>
+  </section>
+  <section class="stat st2">
+    <div class="s inc"><div class="ico"><svg class="i"><use href="#up"/></svg></div><div><small>รายรับเฉลี่ย/กม.</small><b id="sIk">-</b></div></div>
+    <div class="s exp"><div class="ico"><svg class="i"><use href="#fuel"/></svg></div><div><small>ค่าน้ำมัน/กม.</small><b id="sFk">-</b></div></div>
+    <div class="s net"><div class="ico"><svg class="i"><use href="#wallet"/></svg></div><div><small>สุทธิ/กม.</small><b id="sNk">-</b></div></div>
+    <div class="s km"><div class="ico"><svg class="i"><use href="#cal"/></svg></div><div><small>ระยะทางเฉลี่ย/วัน</small><b id="sKd">-</b></div></div>
   </section>
 
   <section class="grid">
     <div class="card">
       <h2><svg class="i"><use href="#plus"/></svg>เพิ่มรายการ</h2>
-      <div class="seg"><button class="on in" id="tIn"><svg class="i"><use href="#up"/></svg>รายรับ</button><button class="ex" id="tEx"><svg class="i"><use href="#down"/></svg>รายจ่าย</button></div>
+      <div class="seg"><button class="on in" id="tIn"><svg class="i"><use href="#up"/></svg>รายรับ</button><button class="ex" id="tEx"><svg class="i"><use href="#down"/></svg>รายจ่าย</button><button class="km" id="tKm"><svg class="i"><use href="#bike"/></svg>ระยะทาง</button></div>
       <label>วันที่</label><input type="date" id="fDate">
-      <label>หมวดหมู่</label><div class="chips" id="chips"></div>
-      <label>จำนวนเงิน (บาท)</label><input type="number" id="fAmt" inputmode="decimal" placeholder="0">
+      <label id="lblCat">หมวดหมู่</label><div class="chips" id="chips"></div>
+      <label id="lblAmt">จำนวนเงิน (บาท)</label><input type="number" id="fAmt" inputmode="decimal" placeholder="0">
       <label>หมายเหตุ</label><input id="fNote" placeholder="ไม่บังคับ">
       <button class="save" id="saveBtn" style="background:var(--g)"><svg class="i"><use href="#plus"/></svg>บันทึกรายรับ</button>
     </div>
@@ -124,10 +139,15 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
       <div class="ch"><canvas id="cPie"></canvas></div>
     </div>
     <div class="card">
-      <div class="bar"><h2 style="margin:0"><svg class="i"><use href="#list"/></svg>รายการทั้งหมด</h2>
-        <select id="fMonth"></select></div>
-      <div class="list" id="list"></div>
+      <h2><svg class="i"><use href="#bike"/></svg>ระยะทาง และรายรับต่อ กม.</h2>
+      <div class="ch"><canvas id="cKm"></canvas></div>
     </div>
+  </section>
+
+  <section class="card" style="margin-top:12px">
+    <div class="bar"><h2 style="margin:0"><svg class="i"><use href="#list"/></svg>รายการทั้งหมด</h2>
+      <select id="fMonth"></select></div>
+    <div class="list" id="list"></div>
   </section>
 </main>
 
@@ -142,13 +162,15 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
 <script>
 const CATS={in:[['Grab'],['Bolt'],['Lala move'],['Line man'],['Bonus/Tip'],['อื่นๆ']],
  ex:[['น้ำมัน','fuel'],['เสื้อ/อุปกรณ์','shirt'],['ค่าอาหาร','food'],['ซ่อมบำรุง','tool'],['รายจ่ายอื่นๆ','dot']]};
+CATS.km=[['ระยะทาง']];
 const COL=['#e5484d','#f59f00','#1f6feb','#8e5cf7','#8b9a92'];
 let cat='',rows=[],type='in',url=localStorage.getItem('gs_url')||'',charts={};
 const $=id=>document.getElementById(id), uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const fmt=n=>'฿'+Math.round(n).toLocaleString('th-TH');
+const fmtKm=n=>(+(+n).toFixed(1)).toLocaleString('th-TH'),fmt2=n=>'฿'+n.toFixed(2);
 const dt=d=>new Date(d+'T00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short'});
 const BR={'Grab':['#00b14f','<b class="lt">G</b>'],'Bolt':['#34d186','<svg class="i" style="fill:#fff;stroke:none"><use href="#bolt"/></svg>'],'Lala move':['#f16622','<b class="lt">L</b>'],'Line man':['#06c755','<b class="lt">LM</b>'],'Bonus/Tip':['#f59f00','<svg class="i"><use href="#gift"/></svg>'],'อื่นๆ':['#6b7a72','<svg class="i"><use href="#wallet"/></svg>']};
-function badge(t,c){if(t==='in'){const b=BR[c]||BR['อื่นๆ'];return `<div class="ico" style="background:${b[0]};color:#fff">${b[1]}</div>`}
+function badge(t,c){if(t==='km')return '<div class="ico" style="background:var(--bs);color:var(--b)"><svg class="i"><use href="#bike"/></svg></div>';if(t==='in'){const b=BR[c]||BR['อื่นๆ'];return `<div class="ico" style="background:${b[0]};color:#fff">${b[1]}</div>`}
  return `<div class="ico ex"><svg class="i"><use href="#${icon(t,c)}"/></svg></div>`}
 function chips(){$('chips').className='chips '+type;$('chips').innerHTML=CATS[type].map(c=>`<button type="button" class="chip${c[0]===cat?' on':''}" data-c="${c[0]}">${badge(type,c[0])}<span>${c[0]}</span></button>`).join('')}
 $('chips').onclick=e=>{const b=e.target.closest('.chip');if(b){cat=b.dataset.c;chips()}};
@@ -159,27 +181,32 @@ function mark(ok){$('syncTxt').textContent=url?(ok?'เชื่อมต่อ 
 async function load(){
   if(url){try{const r=await fetch(url);rows=(await r.json()).rows;rows.forEach(x=>{if(x.cat==='ค่าโดยสาร Grab')x.cat='Grab'});mark(true);render();return}catch(e){mark(false)}}
   localStorage.removeItem('rows');const s=localStorage.getItem('rows_v2');rows=s?JSON.parse(s):[];mark(false);if(!url)$('syncTxt').textContent='ตั้งค่า Sheet';render()}
-function setType(t){type=t;$('tIn').className=(t==='in'?'on ':'')+'in';$('tEx').className=(t==='ex'?'on ':'')+'ex';
+function setType(t){type=t;['In','Ex','Km'].forEach(k=>$('t'+k).className=(t===k.toLowerCase()?'on ':'')+k.toLowerCase());
   cat=CATS[t][0][0];chips();
-  const b=$('saveBtn');b.style.background=t==='in'?'var(--g)':'var(--r)';b.lastChild.textContent=t==='in'?'บันทึกรายรับ':'บันทึกรายจ่าย'}
+  $('lblCat').style.display=$('chips').style.display=t==='km'?'none':'';
+  $('lblAmt').textContent=t==='km'?'ระยะทาง (กม.)':'จำนวนเงิน (บาท)';
+  const b=$('saveBtn');b.style.background={in:'var(--g)',ex:'var(--r)',km:'var(--b)'}[t];b.lastChild.textContent={in:'บันทึกรายรับ',ex:'บันทึกรายจ่าย',km:'บันทึกระยะทาง'}[t]}
 function view(){const m=$('fMonth').value;return rows.filter(r=>!m||r.date.startsWith(m)).sort((a,b)=>b.date.localeCompare(a.date))}
 function render(){
   const ms=[...new Set(rows.map(r=>r.date.slice(0,7)))].sort().reverse(),cur=$('fMonth').value;
   $('fMonth').innerHTML='<option value="">ทุกเดือน</option>'+ms.map(m=>`<option value="${m}">${new Date(m+'-01').toLocaleDateString('th-TH',{month:'long',year:'numeric'})}</option>`).join('');
   $('fMonth').value=ms.includes(cur)?cur:'';
-  const v=view(),sum=t=>v.filter(r=>r.type===t).reduce((a,r)=>a+r.amount,0),I=sum('in'),E=sum('ex'),days=new Set(v.map(r=>r.date)).size;
-  $('sIn').textContent=fmt(I);$('sEx').textContent=fmt(E);$('sNet').textContent=fmt(I-E);$('sAvg').textContent=fmt(days?(I-E)/days:0);
+  const v=view(),sum=t=>v.filter(r=>r.type===t).reduce((a,r)=>a+r.amount,0),I=sum('in'),E=sum('ex');
+  $('sIn').textContent=fmt(I);$('sEx').textContent=fmt(E);$('sNet').textContent=fmt(I-E);const K=sum('km'),F=v.filter(x=>x.type==='ex'&&x.cat==='น้ำมัน').reduce((a,x)=>a+x.amount,0),kd=new Set(v.filter(x=>x.type==='km').map(x=>x.date)).size;
+  $('sKm').textContent=K?fmtKm(K)+' กม.':'-';$('sIk').textContent=K?fmt2(I/K):'-';$('sFk').textContent=K?fmt2(F/K):'-';$('sNk').textContent=K?fmt2((I-E)/K):'-';$('sKd').textContent=kd?fmtKm(K/kd)+' กม.':'-';
   $('list').innerHTML=v.length?v.map(r=>`<div class="row">${badge(r.type,r.cat)}
    <div class="t"><div>${r.cat}</div><small>${dt(r.date)}${r.note?' · '+r.note:''}</small></div>
-   <div class="a ${r.type}">${r.type==='in'?'+':'−'}${fmt(r.amount)}</div>
+   <div class="a ${r.type}">${r.type==='in'?'+'+fmt(r.amount):r.type==='ex'?'−'+fmt(r.amount):fmtKm(r.amount)+' กม.'}</div>
    <button class="del" data-id="${r.id}" aria-label="ลบ"><svg class="i"><use href="#trash"/></svg></button></div>`).join(''):'<div class="empty">ยังไม่มีรายการ</div>';
-  const ds=[...new Set(v.map(r=>r.date))].sort(),g=(d,t)=>v.filter(r=>r.date===d&&r.type===t).reduce((a,r)=>a+r.amount,0);
+  const ds=[...new Set(v.filter(r=>r.type!=='km').map(r=>r.date))].sort(),g=(d,t)=>v.filter(r=>r.date===d&&r.type===t).reduce((a,r)=>a+r.amount,0);
   draw('cBar',{type:'bar',data:{labels:ds.map(dt),datasets:[{label:'รายรับ',data:ds.map(d=>g(d,'in')),backgroundColor:'#00a84a',borderRadius:6},{label:'รายจ่าย',data:ds.map(d=>g(d,'ex')),backgroundColor:'#e5484d',borderRadius:6}]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true}}}});
+  const kds=[...new Set(v.filter(r=>r.type==='km').map(r=>r.date))].sort(),kmOf=d=>g(d,'km');
+  draw('cKm',{type:'bar',data:{labels:kds.map(dt),datasets:[{type:'bar',label:'ระยะทาง (กม.)',data:kds.map(kmOf),backgroundColor:'#1f6feb',borderRadius:6,yAxisID:'y'},{type:'line',label:'รายรับ/กม. (฿)',data:kds.map(d=>kmOf(d)?g(d,'in')/kmOf(d):null),borderColor:'#00a84a',backgroundColor:'#00a84a',tension:.3,yAxisID:'y1',spanGaps:true}]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false}}}}});
   const ex=CATS.ex.map(c=>[c[0],v.filter(r=>r.type==='ex'&&r.cat===c[0]).reduce((a,r)=>a+r.amount,0)]).filter(x=>x[1]);
   draw('cPie',{type:'doughnut',data:{labels:ex.map(x=>x[0]),datasets:[{data:ex.map(x=>x[1]),backgroundColor:COL,borderWidth:0}]},options:{cutout:'65%'}})}
 function draw(id,cfg){if(charts[id])charts[id].destroy();cfg.options.maintainAspectRatio=false;cfg.options.plugins={legend:{position:'bottom',labels:{usePointStyle:true,font:{family:'Prompt'}}}};
   Chart.defaults.color=getComputedStyle(document.body).getPropertyValue('--mute');charts[id]=new Chart($(id),cfg)}
-$('tIn').onclick=()=>setType('in');$('tEx').onclick=()=>setType('ex');
+$('tIn').onclick=()=>setType('in');$('tEx').onclick=()=>setType('ex');$('tKm').onclick=()=>setType('km');
 $('saveBtn').onclick=()=>{const a=parseFloat($('fAmt').value);if(!a||a<=0||!$('fDate').value){$('fAmt').focus();return}
   const row={id:uid(),date:$('fDate').value,type,cat,amount:a,note:$('fNote').value.trim()};
   rows.push(row);store();post({action:'add',row});$('fAmt').value='';$('fNote').value='';render()};
