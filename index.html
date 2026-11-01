@@ -70,8 +70,26 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
 .chip .ico{width:34px;height:34px;font-size:16px}
 .lt{font-weight:700;font-size:15px;font-style:normal}
 .row .ico.ex{background:var(--rs);color:var(--r)}
+.seg{grid-template-columns:repeat(4,1fr)!important}.seg button{font-size:12px;gap:4px!important}.seg button.on.hr{background:#f59f00;color:#fff}
+.row .a.hr{color:#e08a00}.s.hr .ico{background:#f59f0030;color:#e08a00}.s.hr b{color:#e08a00}
+.ed{background:none;color:var(--mute);padding:6px;border-radius:8px}.ed:hover{color:var(--b);background:var(--bs)}
+.mt{padding:12px 0;border-bottom:1px solid var(--line)}.mt:last-child{border:0}
+.mt .h{display:flex;align-items:center;gap:6px}.mt .h b{flex:1;font-weight:500}
+.prog{height:8px;border-radius:99px;background:var(--bg);overflow:hidden;margin:8px 0 6px}.prog i{display:block;height:100%;border-radius:99px}
+.mt small{color:var(--mute);font-size:12px}
+.mtb{background:var(--gs);color:var(--g);padding:6px 10px;border-radius:10px;font-size:12px;display:flex;gap:4px;align-items:center}
+.alert{margin-top:12px;border-radius:16px;padding:12px 16px;background:var(--rs);color:var(--r);display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5}
+.alert.warn{background:#f59f0026;color:#c27c00}
+.cancel{width:100%;margin-top:8px;padding:11px;border-radius:12px;background:var(--bg);color:var(--mute);display:none}
+.range{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pre{display:flex;flex-wrap:wrap;gap:6px}
+.pre button{background:#ffffff1f;color:#fff;padding:7px 12px;border-radius:99px;font-size:13px}
+.pre button.on{background:#fff;color:#0b3d26;font-weight:600}
+.dates{display:flex;align-items:center;gap:6px;color:#ffffffb3;font-size:13px}
+.dates input{width:auto;padding:6px 8px;border:0;background:#ffffff1f;color:#fff;color-scheme:dark;font-size:13px;border-radius:10px}
 .empty{text-align:center;color:var(--mute);padding:30px 0}
-@media(max-width:820px){.stat{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.s b{font-size:18px}}
+.grid.two{grid-template-columns:1fr 1fr}
+@media(max-width:820px){.grid.two{grid-template-columns:1fr}.stat{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.s b{font-size:18px}}
 </style>
 </head>
 <body>
@@ -80,6 +98,9 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
 <symbol id="bike" viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></symbol>
 <symbol id="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
 <symbol id="gift" viewBox="0 0 24 24"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></symbol>
+<symbol id="edit" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
 <symbol id="up" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8M15 7h6v6"/></symbol>
 <symbol id="down" viewBox="0 0 24 24"><path d="m3 7 6 6 4-4 8 8M15 17h6v-6"/></symbol>
 <symbol id="wallet" viewBox="0 0 24 24"><path d="M20 7H5a2 2 0 0 1 0-4h13v4zM3 5v14a2 2 0 0 0 2 2h15V7M16 14h2"/></symbol>
@@ -93,14 +114,18 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
 <symbol id="trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></symbol>
 <symbol id="cloud" viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-1-8.9A6 6 0 0 0 5 12a3.5 3.5 0 0 0 .5 7z"/></symbol>
 <symbol id="pie" viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9zM15 3.5A9 9 0 0 1 20.5 9H15z"/></symbol>
-<symbol id="list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+<symbol id="listi" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
 <symbol id="chart" viewBox="0 0 24 24"><path d="M3 3v18h18M8 17v-5M13 17V8M18 17v-9"/></symbol>
 </defs></svg>
 
 <header><div class="wrap top">
   <div class="brand"><div class="logo"><svg class="i"><use href="#bike"/></svg></div>
-    <div><h1>ชีวิตไรเดอร์</h1><div class="sub">บันทึกรายรับ รายจ่าย และกำไรสุทธิ</div></div></div>
+    <div><h1>ชีวิตไรเดอร์</h1><div class="sub">บันทึกรายรับ รายจ่าย ระยะทาง และชั่วโมงวิ่ง</div></div></div>
   <div class="btns"><button class="ib" id="syncBtn"><svg class="i"><use href="#cloud"/></svg><span id="syncTxt">ตั้งค่า Sheet</span></button></div>
+</div>
+<div class="wrap range">
+  <div class="pre" id="pre"><button data-p="month">เดือนนี้</button><button data-p="7">7 วัน</button><button data-p="30">30 วัน</button><button data-p="lastm">เดือนก่อน</button><button data-p="all">ทั้งหมด</button></div>
+  <div class="dates"><svg class="i"><use href="#cal"/></svg><input type="date" id="rFrom" aria-label="ตั้งแต่"><span>ถึง</span><input type="date" id="rTo" aria-label="ถึงวันที่"></div>
 </div></header>
 
 <main class="wrap">
@@ -116,16 +141,24 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
     <div class="s net"><div class="ico"><svg class="i"><use href="#wallet"/></svg></div><div><small>สุทธิ/กม.</small><b id="sNk">-</b></div></div>
     <div class="s km"><div class="ico"><svg class="i"><use href="#cal"/></svg></div><div><small>ระยะทางเฉลี่ย/วัน</small><b id="sKd">-</b></div></div>
   </section>
+  <section class="stat st2">
+    <div class="s hr"><div class="ico"><svg class="i"><use href="#clock"/></svg></div><div><small>ชั่วโมงวิ่งรวม</small><b id="sHr">-</b></div></div>
+    <div class="s inc"><div class="ico"><svg class="i"><use href="#up"/></svg></div><div><small>รายรับเฉลี่ย/ชม.</small><b id="sIh">-</b></div></div>
+    <div class="s net"><div class="ico"><svg class="i"><use href="#wallet"/></svg></div><div><small>สุทธิ/ชม.</small><b id="sNh">-</b></div></div>
+    <div class="s hr"><div class="ico"><svg class="i"><use href="#cal"/></svg></div><div><small>ชั่วโมงเฉลี่ย/วัน</small><b id="sHd">-</b></div></div>
+  </section>
+  <div id="mtAlert"></div>
 
   <section class="grid">
     <div class="card">
       <h2><svg class="i"><use href="#plus"/></svg>เพิ่มรายการ</h2>
-      <div class="seg"><button class="on in" id="tIn"><svg class="i"><use href="#up"/></svg>รายรับ</button><button class="ex" id="tEx"><svg class="i"><use href="#down"/></svg>รายจ่าย</button><button class="km" id="tKm"><svg class="i"><use href="#bike"/></svg>ระยะทาง</button></div>
+      <div class="seg"><button class="on in" id="tIn"><svg class="i"><use href="#up"/></svg>รายรับ</button><button class="ex" id="tEx"><svg class="i"><use href="#down"/></svg>รายจ่าย</button><button class="km" id="tKm"><svg class="i"><use href="#bike"/></svg>ระยะทาง</button><button class="hr" id="tHr"><svg class="i"><use href="#clock"/></svg>ชั่วโมง</button></div>
       <label>วันที่</label><input type="date" id="fDate">
       <label id="lblCat">หมวดหมู่</label><div class="chips" id="chips"></div>
       <label id="lblAmt">จำนวนเงิน (บาท)</label><input type="number" id="fAmt" inputmode="decimal" placeholder="0">
       <label>หมายเหตุ</label><input id="fNote" placeholder="ไม่บังคับ">
       <button class="save" id="saveBtn" style="background:var(--g)"><svg class="i"><use href="#plus"/></svg>บันทึกรายรับ</button>
+      <button class="cancel" id="cancelEdit">ยกเลิกการแก้ไข</button>
     </div>
     <div class="card">
       <h2><svg class="i"><use href="#chart"/></svg>รายรับ-รายจ่ายรายวัน</h2>
@@ -144,9 +177,21 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
     </div>
   </section>
 
+  <section class="grid two">
+    <div class="card">
+      <h2><svg class="i"><use href="#clock"/></svg>ชั่วโมงวิ่ง และรายรับต่อ ชม.</h2>
+      <div class="ch"><canvas id="cHr"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="bar"><h2 style="margin:0"><svg class="i"><use href="#tool"/></svg>เตือนบำรุงรักษา</h2>
+        <button class="mtb" id="mtAdd"><svg class="i"><use href="#plus"/></svg>เพิ่ม</button></div>
+      <div id="mtList"></div>
+    </div>
+  </section>
+
   <section class="card" style="margin-top:12px">
-    <div class="bar"><h2 style="margin:0"><svg class="i"><use href="#list"/></svg>รายการทั้งหมด</h2>
-      <select id="fMonth"></select></div>
+    <div class="bar"><h2 style="margin:0"><svg class="i"><use href="#listi"/></svg>รายการทั้งหมด</h2>
+      <small id="rLbl" style="color:var(--mute);font-size:12px"></small></div>
     <div class="list" id="list"></div>
   </section>
 </main>
@@ -159,18 +204,30 @@ dialog p{font-size:13px;color:var(--mute);margin:6px 0 10px;line-height:1.6}
   <div class="row2"><button id="cancel">ปิด</button><button class="p" id="ok">บันทึก</button></div>
 </dialog>
 
+<dialog id="mdlg">
+  <h2><svg class="i"><use href="#tool"/></svg><span id="mTitle"></span></h2>
+  <label>ชื่อรายการ</label><input id="mName" list="mSug" placeholder="เช่น เปลี่ยนน้ำมันเครื่อง">
+  <datalist id="mSug"><option value="เปลี่ยนน้ำมันเครื่อง"><option value="เปลี่ยนยางหน้า"><option value="เปลี่ยนยางหลัง"><option value="เปลี่ยนผ้าเบรก"><option value="เปลี่ยนโซ่สเตอร์"><option value="เปลี่ยนหัวเทียน"><option value="เปลี่ยนกรองอากาศ"><option value="เปลี่ยนน้ำมันเฟืองท้าย"></datalist>
+  <label>เปลี่ยน/ตรวจทุกๆ (กม.)</label><input type="number" id="mInt" inputmode="numeric" placeholder="3000">
+  <label>วิ่งมาแล้วกี่ กม. นับจากครั้งล่าสุด</label><input type="number" id="mDone" inputmode="decimal" placeholder="0">
+  <p>แอปนับระยะทางจากที่บันทึกไว้ในแท็บ “ระยะทาง” กด “ทำแล้ว” ในรายการเมื่อบำรุงรักษาเสร็จเพื่อเริ่มนับรอบใหม่</p>
+  <div class="row2"><button id="mDel" style="display:none;color:var(--r)">ลบ</button><button id="mCancel">ยกเลิก</button><button class="p" id="mOk">บันทึก</button></div>
+</dialog>
+
 <script>
 const CATS={in:[['Grab'],['Bolt'],['Lala move'],['Line man'],['Bonus/Tip'],['อื่นๆ']],
  ex:[['น้ำมัน','fuel'],['เสื้อ/อุปกรณ์','shirt'],['ค่าอาหาร','food'],['ซ่อมบำรุง','tool'],['รายจ่ายอื่นๆ','dot']]};
-CATS.km=[['ระยะทาง']];
+CATS.km=[['ระยะทาง']];CATS.hr=[['ชั่วโมงวิ่ง']];
 const COL=['#e5484d','#f59f00','#1f6feb','#8e5cf7','#8b9a92'];
-let cat='',rows=[],type='in',url=localStorage.getItem('gs_url')||'',charts={};
+let editId=null,mEdit=null,cat='',rows=[],type='in',url=localStorage.getItem('gs_url')||'',charts={};
 const $=id=>document.getElementById(id), uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const fmt=n=>'฿'+Math.round(n).toLocaleString('th-TH');
 const fmtKm=n=>(+(+n).toFixed(1)).toLocaleString('th-TH'),fmt2=n=>'฿'+n.toFixed(2);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),today=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)},ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+let rFrom='',rTo='',preset='month';
 const dt=d=>new Date(d+'T00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short'});
 const BR={'Grab':['#00b14f','<b class="lt">G</b>'],'Bolt':['#34d186','<svg class="i" style="fill:#fff;stroke:none"><use href="#bolt"/></svg>'],'Lala move':['#f16622','<b class="lt">L</b>'],'Line man':['#06c755','<b class="lt">LM</b>'],'Bonus/Tip':['#f59f00','<svg class="i"><use href="#gift"/></svg>'],'อื่นๆ':['#6b7a72','<svg class="i"><use href="#wallet"/></svg>']};
-function badge(t,c){if(t==='km')return '<div class="ico" style="background:var(--bs);color:var(--b)"><svg class="i"><use href="#bike"/></svg></div>';if(t==='in'){const b=BR[c]||BR['อื่นๆ'];return `<div class="ico" style="background:${b[0]};color:#fff">${b[1]}</div>`}
+function badge(t,c){if(t==='hr')return '<div class="ico" style="background:#f59f00;color:#fff"><svg class="i"><use href="#clock"/></svg></div>';if(t==='km')return '<div class="ico" style="background:var(--bs);color:var(--b)"><svg class="i"><use href="#bike"/></svg></div>';if(t==='in'){const b=BR[c]||BR['อื่นๆ'];return `<div class="ico" style="background:${b[0]};color:#fff">${b[1]}</div>`}
  return `<div class="ico ex"><svg class="i"><use href="#${icon(t,c)}"/></svg></div>`}
 function chips(){$('chips').className='chips '+type;$('chips').innerHTML=CATS[type].map(c=>`<button type="button" class="chip${c[0]===cat?' on':''}" data-c="${c[0]}">${badge(type,c[0])}<span>${c[0]}</span></button>`).join('')}
 $('chips').onclick=e=>{const b=e.target.closest('.chip');if(b){cat=b.dataset.c;chips()}};
@@ -181,44 +238,82 @@ function mark(ok){$('syncTxt').textContent=url?(ok?'เชื่อมต่อ 
 async function load(){
   if(url){try{const r=await fetch(url);rows=(await r.json()).rows;rows.forEach(x=>{if(x.cat==='ค่าโดยสาร Grab')x.cat='Grab'});mark(true);render();return}catch(e){mark(false)}}
   localStorage.removeItem('rows');const s=localStorage.getItem('rows_v2');rows=s?JSON.parse(s):[];mark(false);if(!url)$('syncTxt').textContent='ตั้งค่า Sheet';render()}
-function setType(t){type=t;['In','Ex','Km'].forEach(k=>$('t'+k).className=(t===k.toLowerCase()?'on ':'')+k.toLowerCase());
+function setType(t){type=t;['In','Ex','Km','Hr'].forEach(k=>$('t'+k).className=(t===k.toLowerCase()?'on ':'')+k.toLowerCase());
   cat=CATS[t][0][0];chips();
-  $('lblCat').style.display=$('chips').style.display=t==='km'?'none':'';
-  $('lblAmt').textContent=t==='km'?'ระยะทาง (กม.)':'จำนวนเงิน (บาท)';
-  const b=$('saveBtn');b.style.background={in:'var(--g)',ex:'var(--r)',km:'var(--b)'}[t];b.lastChild.textContent={in:'บันทึกรายรับ',ex:'บันทึกรายจ่าย',km:'บันทึกระยะทาง'}[t]}
-function view(){const m=$('fMonth').value;return rows.filter(r=>!m||r.date.startsWith(m)).sort((a,b)=>b.date.localeCompare(a.date))}
+  $('lblCat').style.display=$('chips').style.display=(t==='km'||t==='hr')?'none':'';
+  $('lblAmt').textContent={in:'จำนวนเงิน (บาท)',ex:'จำนวนเงิน (บาท)',km:'ระยะทาง (กม.)',hr:'ชั่วโมงที่ออกวิ่ง (ชม.)'}[t];paintSave()}
+function paintSave(){const b=$('saveBtn'),n={in:'รายรับ',ex:'รายจ่าย',km:'ระยะทาง',hr:'ชั่วโมงวิ่ง'}[type];
+  b.style.background={in:'var(--g)',ex:'var(--r)',km:'var(--b)',hr:'#f59f00'}[type];
+  b.lastChild.textContent=(editId?'อัปเดต':'บันทึก')+n;$('cancelEdit').style.display=editId?'block':'none'}
+function startEdit(id){const x=rows.find(q=>q.id===id);if(!x)return;editId=id;setType(x.type);cat=x.cat;chips();
+  $('fDate').value=x.date;$('fAmt').value=x.amount;$('fNote').value=x.note||'';paintSave();$('fAmt').scrollIntoView({behavior:'smooth',block:'center'})}
+async function saveRow(row,old){if(old)rows=rows.filter(x=>x.id!==old);rows.push(row);store();render();
+  if(old)await post({action:'delete',id:old});await post({action:'add',row})}
+const totalKm=()=>rows.filter(x=>x.type==='km').reduce((a,x)=>a+x.amount,0);
+const mtItems=()=>rows.filter(x=>x.type==='mt').map(x=>({id:x.id,name:x.cat,int:x.amount,last:parseFloat(x.note)||0}));
+function mtStat(m){const rem=m.last+m.int-totalKm();return{rem,pct:Math.max(0,Math.min(100,(m.int-rem)/m.int*100)),st:rem<0?'r':rem<=m.int*.1?'a':'g'}}
+function renderMt(){const L=mtItems(),C={r:'var(--r)',a:'#f59f00',g:'var(--g)'};
+  $('mtList').innerHTML=L.length?L.map(m=>{const s=mtStat(m);return `<div class="mt"><div class="h"><b>${esc(m.name)}</b><button class="ed" data-mt="${m.id}" aria-label="แก้ไข"><svg class="i"><use href="#edit"/></svg></button><button class="mtb" data-done="${m.id}"><svg class="i"><use href="#check"/></svg>ทำแล้ว</button></div>
+  <div class="prog"><i style="width:${s.pct}%;background:${C[s.st]}"></i></div>
+  <small>${s.rem<0?'เกินกำหนด '+fmtKm(-s.rem)+' กม.':'อีก '+fmtKm(s.rem)+' กม.'} · ทุก ${fmtKm(m.int)} กม.</small></div>`}).join(''):'<div class="empty">ยังไม่มีรายการ กด “เพิ่ม” เพื่อตั้งเตือน</div>';
+  const due=L.filter(m=>mtStat(m).st!=='g');
+  $('mtAlert').innerHTML=due.length?`<div class="alert${due.some(m=>mtStat(m).st==='r')?'':' warn'}"><svg class="i"><use href="#tool"/></svg><div><b>ใกล้ถึงเวลาบำรุงรักษา</b><br>${due.map(m=>{const s=mtStat(m);return esc(m.name)+(s.rem<0?' (เกิน '+fmtKm(-s.rem)+' กม.)':' (อีก '+fmtKm(s.rem)+' กม.)')}).join(' · ')}</div></div>`:''}
+function openM(id){mEdit=id;const m=id?mtItems().find(x=>x.id===id):null;
+  $('mTitle').textContent=id?'แก้ไขการบำรุงรักษา':'เพิ่มการบำรุงรักษา';
+  $('mName').value=m?m.name:'';$('mInt').value=m?m.int:'';$('mDone').value=m?Math.round((totalKm()-m.last)*10)/10:'';
+  $('mDel').style.display=id?'':'none';$('mdlg').showModal()}
+function view(){return rows.filter(r=>r.type!=='mt'&&(!rFrom||r.date>=rFrom)&&(!rTo||r.date<=rTo)).sort((a,b)=>b.date.localeCompare(a.date))}
+function paintRange(){$('rFrom').value=rFrom;$('rTo').value=rTo;document.querySelectorAll('#pre button').forEach(b=>b.classList.toggle('on',b.dataset.p===preset))}
+function setRange(p,quiet){const t=new Date(),y=t.getFullYear(),m=t.getMonth();let f='',e='';
+  if(p==='month'){f=ymd(new Date(y,m,1));e=ymd(new Date(y,m+1,0))}
+  else if(p==='lastm'){f=ymd(new Date(y,m-1,1));e=ymd(new Date(y,m,0))}
+  else if(p==='7'||p==='30'){e=today();f=ymd(new Date(y,m,t.getDate()-(+p)+1))}
+  rFrom=f;rTo=e;preset=p;paintRange();if(!quiet)render()}
 function render(){
-  const ms=[...new Set(rows.map(r=>r.date.slice(0,7)))].sort().reverse(),cur=$('fMonth').value;
-  $('fMonth').innerHTML='<option value="">ทุกเดือน</option>'+ms.map(m=>`<option value="${m}">${new Date(m+'-01').toLocaleDateString('th-TH',{month:'long',year:'numeric'})}</option>`).join('');
-  $('fMonth').value=ms.includes(cur)?cur:'';
+  $('rLbl').textContent=(rFrom||rTo)?(rFrom?dt(rFrom):'')+' – '+(rTo?dt(rTo):''):'ทุกช่วงเวลา';
   const v=view(),sum=t=>v.filter(r=>r.type===t).reduce((a,r)=>a+r.amount,0),I=sum('in'),E=sum('ex');
   $('sIn').textContent=fmt(I);$('sEx').textContent=fmt(E);$('sNet').textContent=fmt(I-E);const K=sum('km'),F=v.filter(x=>x.type==='ex'&&x.cat==='น้ำมัน').reduce((a,x)=>a+x.amount,0),kd=new Set(v.filter(x=>x.type==='km').map(x=>x.date)).size;
   $('sKm').textContent=K?fmtKm(K)+' กม.':'-';$('sIk').textContent=K?fmt2(I/K):'-';$('sFk').textContent=K?fmt2(F/K):'-';$('sNk').textContent=K?fmt2((I-E)/K):'-';$('sKd').textContent=kd?fmtKm(K/kd)+' กม.':'-';
+  const H=sum('hr'),hd=new Set(v.filter(x=>x.type==='hr').map(x=>x.date)).size;$('sHr').textContent=H?fmtKm(H)+' ชม.':'-';$('sIh').textContent=H?fmt2(I/H):'-';$('sNh').textContent=H?fmt2((I-E)/H):'-';$('sHd').textContent=hd?fmtKm(H/hd)+' ชม.':'-';
   $('list').innerHTML=v.length?v.map(r=>`<div class="row">${badge(r.type,r.cat)}
-   <div class="t"><div>${r.cat}</div><small>${dt(r.date)}${r.note?' · '+r.note:''}</small></div>
-   <div class="a ${r.type}">${r.type==='in'?'+'+fmt(r.amount):r.type==='ex'?'−'+fmt(r.amount):fmtKm(r.amount)+' กม.'}</div>
-   <button class="del" data-id="${r.id}" aria-label="ลบ"><svg class="i"><use href="#trash"/></svg></button></div>`).join(''):'<div class="empty">ยังไม่มีรายการ</div>';
-  const ds=[...new Set(v.filter(r=>r.type!=='km').map(r=>r.date))].sort(),g=(d,t)=>v.filter(r=>r.date===d&&r.type===t).reduce((a,r)=>a+r.amount,0);
+   <div class="t"><div>${r.cat}</div><small>${dt(r.date)}${r.note?' · '+esc(r.note):''}</small></div>
+   <div class="a ${r.type}">${r.type==='in'?'+'+fmt(r.amount):r.type==='ex'?'−'+fmt(r.amount):fmtKm(r.amount)+(r.type==='hr'?' ชม.':' กม.')}</div>
+   <button class="ed" data-id="${r.id}" aria-label="แก้ไข"><svg class="i"><use href="#edit"/></svg></button><button class="del" data-id="${r.id}" aria-label="ลบ"><svg class="i"><use href="#trash"/></svg></button></div>`).join(''):'<div class="empty">ยังไม่มีรายการ</div>';
+  const ds=[...new Set(v.filter(r=>r.type==='in'||r.type==='ex').map(r=>r.date))].sort(),g=(d,t)=>v.filter(r=>r.date===d&&r.type===t).reduce((a,r)=>a+r.amount,0);
   draw('cBar',{type:'bar',data:{labels:ds.map(dt),datasets:[{label:'รายรับ',data:ds.map(d=>g(d,'in')),backgroundColor:'#00a84a',borderRadius:6},{label:'รายจ่าย',data:ds.map(d=>g(d,'ex')),backgroundColor:'#e5484d',borderRadius:6}]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true}}}});
   const kds=[...new Set(v.filter(r=>r.type==='km').map(r=>r.date))].sort(),kmOf=d=>g(d,'km');
   draw('cKm',{type:'bar',data:{labels:kds.map(dt),datasets:[{type:'bar',label:'ระยะทาง (กม.)',data:kds.map(kmOf),backgroundColor:'#1f6feb',borderRadius:6,yAxisID:'y'},{type:'line',label:'รายรับ/กม. (฿)',data:kds.map(d=>kmOf(d)?g(d,'in')/kmOf(d):null),borderColor:'#00a84a',backgroundColor:'#00a84a',tension:.3,yAxisID:'y1',spanGaps:true}]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false}}}}});
+  const hds=[...new Set(v.filter(r=>r.type==='hr').map(r=>r.date))].sort(),hrOf=d=>g(d,'hr');
+  draw('cHr',{type:'bar',data:{labels:hds.map(dt),datasets:[{type:'bar',label:'ชั่วโมงวิ่ง (ชม.)',data:hds.map(hrOf),backgroundColor:'#f59f00',borderRadius:6,yAxisID:'y'},{type:'line',label:'รายรับ/ชม. (฿)',data:hds.map(d=>hrOf(d)?g(d,'in')/hrOf(d):null),borderColor:'#00a84a',backgroundColor:'#00a84a',tension:.3,yAxisID:'y1',spanGaps:true}]},options:{scales:{x:{grid:{display:false}},y:{beginAtZero:true},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false}}}}});
+  renderMt();
   const ex=CATS.ex.map(c=>[c[0],v.filter(r=>r.type==='ex'&&r.cat===c[0]).reduce((a,r)=>a+r.amount,0)]).filter(x=>x[1]);
   draw('cPie',{type:'doughnut',data:{labels:ex.map(x=>x[0]),datasets:[{data:ex.map(x=>x[1]),backgroundColor:COL,borderWidth:0}]},options:{cutout:'65%'}})}
 function draw(id,cfg){if(charts[id])charts[id].destroy();cfg.options.maintainAspectRatio=false;cfg.options.plugins={legend:{position:'bottom',labels:{usePointStyle:true,font:{family:'Prompt'}}}};
   Chart.defaults.color=getComputedStyle(document.body).getPropertyValue('--mute');charts[id]=new Chart($(id),cfg)}
-$('tIn').onclick=()=>setType('in');$('tEx').onclick=()=>setType('ex');$('tKm').onclick=()=>setType('km');
+$('tIn').onclick=()=>setType('in');$('tEx').onclick=()=>setType('ex');$('tKm').onclick=()=>setType('km');$('tHr').onclick=()=>setType('hr');
 $('saveBtn').onclick=()=>{const a=parseFloat($('fAmt').value);if(!a||a<=0||!$('fDate').value){$('fAmt').focus();return}
-  const row={id:uid(),date:$('fDate').value,type,cat,amount:a,note:$('fNote').value.trim()};
-  rows.push(row);store();post({action:'add',row});$('fAmt').value='';$('fNote').value='';render()};
-$('list').onclick=e=>{const b=e.target.closest('.del');if(!b||!confirm('ลบรายการนี้?'))return;
+  const row={id:editId||uid(),date:$('fDate').value,type,cat,amount:a,note:$('fNote').value.trim()},was=editId;
+  editId=null;paintSave();$('fAmt').value='';$('fNote').value='';saveRow(row,was)};
+$('cancelEdit').onclick=()=>{editId=null;$('fAmt').value='';$('fNote').value='';paintSave()};
+$('list').onclick=e=>{const ed=e.target.closest('.ed');if(ed)return startEdit(ed.dataset.id);const b=e.target.closest('.del');if(!b||!confirm('ลบรายการนี้?'))return;
   rows=rows.filter(r=>r.id!==b.dataset.id);store();post({action:'delete',id:b.dataset.id});render()};
-$('fMonth').onchange=render;
+document.querySelectorAll('#pre button').forEach(b=>b.onclick=()=>setRange(b.dataset.p));
+['rFrom','rTo'].forEach(id=>$(id).onchange=()=>{rFrom=$('rFrom').value;rTo=$('rTo').value;if(rFrom&&rTo&&rFrom>rTo)[rFrom,rTo]=[rTo,rFrom];preset='custom';paintRange();render()});
+$('mtAdd').onclick=()=>openM(null);$('mCancel').onclick=()=>$('mdlg').close();
+$('mOk').onclick=async()=>{const name=$('mName').value.trim(),int=parseFloat($('mInt').value),done=parseFloat($('mDone').value)||0;
+  if(!name||!int||int<=0)return alert('กรอกชื่อรายการและรอบ กม. ให้ครบ');
+  const old=mEdit;mEdit=null;$('mdlg').close();
+  await saveRow({id:old||uid(),date:today(),type:'mt',cat:name,amount:int,note:String(Math.round((totalKm()-done)*10)/10)},old)};
+$('mDel').onclick=()=>{if(!confirm('ลบรายการนี้?'))return;const id=mEdit;mEdit=null;rows=rows.filter(x=>x.id!==id);store();post({action:'delete',id});$('mdlg').close();render()};
+$('mtList').onclick=e=>{const d=e.target.closest('[data-done]'),ed=e.target.closest('[data-mt]');
+  if(d){const m=mtItems().find(x=>x.id===d.dataset.done);if(m&&confirm('บันทึกว่าทำ “'+m.name+'” แล้ว ที่ระยะทางปัจจุบัน?'))saveRow({id:m.id,date:today(),type:'mt',cat:m.name,amount:m.int,note:String(totalKm())},m.id)}
+  else if(ed)openM(ed.dataset.mt)};
 $('syncBtn').onclick=()=>{$('url').value=url;$('dlg').showModal()};
 $('cancel').onclick=()=>$('dlg').close();
 $('ok').onclick=()=>{url=$('url').value.trim();localStorage.setItem('gs_url',url);$('dlg').close();load()};
 $('push').onclick=async()=>{if(!$('url').value.trim())return alert('วาง URL ก่อน');url=$('url').value.trim();localStorage.setItem('gs_url',url);
   if(confirm('ส่งข้อมูลในเครื่อง '+rows.length+' รายการขึ้น Sheet?')){await post({action:'bulk',rows});alert('ส่งแล้ว')}};
-$('fDate').value=new Date().toISOString().slice(0,10);setType('in');load();
+$('fDate').value=today();setRange('month',true);setType('in');load();
 </script>
 </body>
 </html>
